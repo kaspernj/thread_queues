@@ -69,7 +69,18 @@ Thread.new do
   queue.push("is kasper\n")
   queue.close
 end
+```
 
+Get each line
+```ruby
+string_buffer.gets #=> "hello\n"
+string_buffer.gets #=> "my\r\n"
+string_buffer.gets #=> "name\n"
+string_buffer.gets #=> "is kasper\n"
+```
+
+Get specified lengths
+```ruby
 string_buffer.read(6) #=> "hello\n"
 string_buffer.read(4) #=> "my\r\n"
 string_buffer.read(5) #=> "name\n"
