@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "thread_queues"
   gem.homepage = "http://github.com/kaspernj/thread_queues"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Thread-queues for Ruby"
+  gem.description = "Do thread-related work with BlockingQueue and BufferedQueue in Ruby."
   gem.email = "k@spernj.org"
   gem.authors = ["kaspernj"]
   # dependencies defined in Gemfile
