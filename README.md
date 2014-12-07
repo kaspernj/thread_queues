@@ -54,6 +54,30 @@ end
 queue.pop #=> EOFError
 ```
 
+### StringBuffer
+
+```ruby
+queue = ThreadQueues::BufferedQueue.new(5)
+string_buffer = ThreadQueues::StringBuffer.new(queue)
+
+Thread.new do
+  queue.push("hel")
+  queue.push("lo\n")
+  queue.push("my\r\n")
+  queue.push("nam")
+  queue.push("e\n")
+  queue.push("is kasper\n")
+  queue.close
+end
+
+string_buffer.read(6).should eq "hello\n"
+string_buffer.read(4).should eq "my\r\n"
+string_buffer.read(5).should eq "name\n"
+string_buffer.read(10).should eq "is kasper\n"
+
+expect { string_buffer.gets }.to raise_error(EOFError)
+```
+
 ## Contributing to thread_queues
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
