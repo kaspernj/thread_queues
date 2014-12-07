@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["kaspernj"]
   s.date = "2014-12-07"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Do thread-related work with BlockingQueue and BufferedQueue in Ruby."
   s.email = "k@spernj.org"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/kaspernj/thread_queues"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.0"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Thread-queues for Ruby"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
