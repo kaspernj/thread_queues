@@ -22,7 +22,29 @@ Thread.new do
 end
 
 3.times do |count|
-  queue.pop #=> 1|2|3
+  queue.pop #=> 0|1|2
+end
+
+queue.pop #=> EOFError
+```
+
+### BufferedQueue
+
+Example buffered 5 results before blocking and waiting for results to be read.
+
+```ruby
+queue = ThreadQueues::BufferedQueue.new(5)
+
+Thread.new do
+  10.times do |count|
+    queue.push(count)
+  end
+
+  queue.close
+end
+
+10.times do |count|
+  queue.pop #=> 0|1|2|3|4|5|6|7|8|9
 end
 
 queue.pop #=> EOFError
