@@ -18,7 +18,7 @@ class ThreadQueues::StringBuffer
         begin
           store_more_in_buffer
         rescue EOFError => e
-          return @buffer if @buffer.length > 0
+          return rest_of_buffer if @buffer.length > 0
           raise e
         end
       end
@@ -35,7 +35,7 @@ class ThreadQueues::StringBuffer
         begin
           store_more_in_buffer
         rescue EOFError => e
-          return @buffer if @buffer.length > 0
+          return rest_of_buffer if @buffer.length > 0
           raise e
         end
       end
@@ -43,6 +43,12 @@ class ThreadQueues::StringBuffer
   end
 
 private
+
+  def rest_of_buffer
+    buffer = @buffer
+    @buffer = ""
+    return buffer
+  end
 
   def store_more_in_buffer
     @mutex.synchronize do
