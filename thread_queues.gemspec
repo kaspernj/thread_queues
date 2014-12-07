@@ -34,7 +34,8 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "spec/thread_queues/blocking_queue_spec.rb",
     "spec/thread_queues/buffered_queue_spec.rb",
-    "spec/thread_queues_spec.rb"
+    "spec/thread_queues_spec.rb",
+    "thread_queues.gemspec"
   ]
   s.homepage = "http://github.com/kaspernj/thread_queues"
   s.licenses = ["MIT"]
