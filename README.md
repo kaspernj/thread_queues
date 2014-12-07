@@ -7,7 +7,7 @@
 ## Installation
 
 ```ruby
-gem "thead_queues"
+gem "thread_queues"
 ```
 
 ## Usage
