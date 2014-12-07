@@ -70,12 +70,10 @@ Thread.new do
   queue.close
 end
 
-string_buffer.read(6).should eq "hello\n"
-string_buffer.read(4).should eq "my\r\n"
-string_buffer.read(5).should eq "name\n"
-string_buffer.read(10).should eq "is kasper\n"
-
-expect { string_buffer.gets }.to raise_error(EOFError)
+string_buffer.read(6) #=> "hello\n"
+string_buffer.read(4) #=> "my\r\n"
+string_buffer.read(5) #=> "name\n"
+string_buffer.read(10) #=> "is kasper\n"
 ```
 
 ## Contributing to thread_queues
