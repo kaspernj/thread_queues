@@ -19,7 +19,7 @@ class ThreadQueues::StringBuffer
 
     @mutex.synchronize do
       loop do
-        if match = @buffer.match(/\A([\s\S]+)#{Regexp.escape(sep)}/)
+        if match = @buffer.match(/\A([\s\S]+?)#{Regexp.escape(sep)}/)
           take = match[0]
           if limit && take.length > limit
             take = take.slice(0, limit)
@@ -72,25 +72,43 @@ class ThreadQueues::StringBuffer
     end
   end
 
-  def read(length = nil)
+  def read(length = nil, outbuf = nil)
     return read_all if length == nil
+
+    content = nil
 
     @mutex.synchronize do
       loop do
         if @buffer.length >= length
           content = @buffer.slice!(0, length)
           @pos += content.bytesize
-          return content
+          break
         end
 
         begin
           store_more_in_buffer
         rescue EOFError => e
-          return rest_of_buffer if @buffer.length > 0
-          raise e
+          if @buffer.length > 0
+            content = rest_of_buffer
+            break
+          end
+
+          # Return nil if length is set like a normal IO - otherwise an empty string.
+          if length
+            return nil
+          else
+            content = ""
+          end
         end
       end
     end
+
+    if outbuf
+      outbuf.clear
+      outbuf << content
+    end
+
+    return content
   end
 
   def empty?

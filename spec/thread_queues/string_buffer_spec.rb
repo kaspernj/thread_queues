@@ -51,17 +51,31 @@ describe ThreadQueues::StringBuffer do
     end
   end
 
-  it "#read" do
-    string_buffer.read(6).should eq "hello\n"
-    string_buffer.read(4).should eq "my\r\n"
-    string_buffer.read(5).should eq "name\n"
-    string_buffer.read(10).should eq "is kasper\n"
+  describe "#read" do
+    it "with a given length" do
+      string_buffer.read(6).should eq "hello\n"
+      string_buffer.read(4).should eq "my\r\n"
+      string_buffer.read(5).should eq "name\n"
+      string_buffer.read(10).should eq "is kasper\n"
 
-    expect { string_buffer.gets }.to raise_error(EOFError)
-  end
+      expect { string_buffer.gets }.to raise_error(EOFError)
+    end
 
-  it "reads the whole thing when length is nil" do
-    string_buffer.read.should eq whole_string
+    it "reads the whole thing when length is nil" do
+      string_buffer.read.should eq whole_string
+    end
+
+    it "supports outbuf argument" do
+      outbuf = "kasper"
+      string_buffer.read(6, outbuf).should eq "hello\n"
+      outbuf.should eq "hello\n"
+    end
+
+    it "should return the correct values when it has reaches eof" do
+      string_buffer.read.should eq whole_string
+      string_buffer.read.should eq ""
+      string_buffer.read(5).should eq nil
+    end
   end
 
   it "#each_line" do
