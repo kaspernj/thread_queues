@@ -1,6 +1,6 @@
-[![Build Status](https://api.shippable.com/projects/54842b6dd46935d5fbbf8e53/badge?branchName=master)](https://app.shippable.com/projects/54842b6dd46935d5fbbf8e53/builds/latest)
 [![Code Climate](https://codeclimate.com/github/kaspernj/thread_queues/badges/gpa.svg)](https://codeclimate.com/github/kaspernj/thread_queues)
 [![Test Coverage](https://codeclimate.com/github/kaspernj/thread_queues/badges/coverage.svg)](https://codeclimate.com/github/kaspernj/thread_queues)
+[![Build Status](https://img.shields.io/shippable/54842b6dd46935d5fbbf8e53.svg)](https://app.shippable.com/projects/54842b6dd46935d5fbbf8e53/builds/latest)
 
 # ThreadQueues
 
